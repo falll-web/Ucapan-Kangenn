@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Kamu yang Aku Kangenin 💗</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#ffd6e7,#e8d9ff);color:#4b2940;min-height:100vh;overflow-x:hidden}.wrap{max-width:700px;margin:auto;padding:24px 16px 80px}.card{background:rgba(255,255,255,.78);backdrop-filter:blur(10px);border-radius:28px;padding:28px 20px;box-shadow:0 15px 45px rgba(100,40,80,.16);margin:18px 0;text-align:center}.heart{font-size:64px;animation:pulse 1.2s infinite}.float{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-1}.float span{position:absolute;bottom:-30px;animation:up linear infinite;opacity:.65}@keyframes up{to{transform:translateY(-110vh) rotate(360deg)}}@keyframes pulse{50%{transform:scale(1.15)}}h1{font-size:32px;margin:10px 0}h2{font-size:24px}p{line-height:1.75}.meter{height:25px;background:#f4dce8;border-radius:20px;overflow:hidden}.bar{height:100%;width:100%;background:linear-gradient(90deg,#ff72a7,#a879ff);animation:shine 2s infinite}.btn{border:0;border-radius:999px;padding:13px 22px;background:#ff5f9d;color:#fff;font-weight:700;font-size:16px;box-shadow:0 7px 18px #ff5f9d55;margin:7px;cursor:pointer}.btn:active{transform:scale(.96)}.hidden{display:none}.photos{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.photo{height:150px;border-radius:18px;background:linear-gradient(135deg,#ffc1d9,#d9c7ff);display:flex;align-items:center;justify-content:center;font-size:42px}.game{font-size:50px;cursor:pointer;user-select:none;position:relative;height:120px}.final{font-size:25px;font-weight:800}.small{font-size:13px;opacity:.7}@keyframes shake{25%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}}.shake{animation:shake .4s infinite}
+</style>
+</head>
+<body>
+<audio id="music" autoplay loop preload="auto"><source src="musik-kangen.mp3" type="audio/mpeg"></audio>
+<div class="float" id="float"></div>
+<div class="wrap">
+<section class="card"><div class="heart">💗</div><h1>Hei, kamu...</h1><p>Ada sesuatu yang harus aku akui.</p><button class="btn" onclick="next(1);startMusic()">Buka 👀</button></section>
+<section class="card hidden" id="p1"><h2>AKU MAU JUJUR 😭</h2><p>Seharian ini entah kenapa kepikiran kamu terus...</p><div class="heart">🥹💗</div><button class="btn" onclick="next(2)">Terus...</button></section>
+<section class="card hidden" id="p2"><h2>HASIL PEMERIKSAAN 🚨</h2><p>Kadar kangennya sudah tidak normal.</p><div class="meter"><div class="bar"></div></div><h2>1000% KANGEN 😭</h2><p>Dokter bilang obatnya cuma satu: <b>ketemu kamu.</b></p><button class="btn" onclick="next(3)">Cek lagi 😂</button></section>
+<section class="card hidden" id="p3"><h2>Kenangan kecil 📸</h2><div class="photos"><div class="photo">🫶🏻</div><div class="photo">🥰</div><div class="photo">💐</div><div class="photo">🧸</div></div><p>Setiap lihat hal-hal kecil yang mengingatkanku sama kamu, kangennya malah nambah 😭</p><button class="btn" onclick="next(4)">Main game 🎮</button></section>
+<section class="card hidden" id="p4"><h2>Tangkap hati! ❤️</h2><p>Klik hati sebanyak mungkin dalam 10 detik!</p><div id="score">0</div><div class="game" onclick="hit()">❤️</div><button class="btn" onclick="startGame()">Mulai</button><p id="result"></p><button class="btn hidden" id="continue" onclick="next(5)">Lanjut 💌</button></section>
+<section class="card hidden" id="p5"><h2>Pesan buat kamu 💌</h2><p>Kalau boleh jujur, aku kangen banget. Kangen ngobrol sama kamu, kangen ketawa bareng, kangen lihat kamu, bahkan hal-hal kecil tentang kamu juga kadang bikin aku senyum sendiri.</p><p>Jadi kalau tiba-tiba aku bilang <b>“aku kangen”</b>, itu bukan cuma basa-basi. Aku beneran kangen kamu. 🥹🤍</p><button class="btn" onclick="next(6)">Ada satu lagi...</button></section>
+<section class="card hidden" id="p6"><div class="heart shake">🫂</div><p class="final">KANGEN KAMU BUKAN CUMA HARI INI...</p><p class="final">TAPI SETIAP HARI. 💗</p><p>Kalau sekarang kamu ada di sini, mungkin aku cuma mau bilang:</p><h2>“Sini, peluk dulu.” 🥹🫂</h2><button class="btn" onclick="hug()">Peluk virtual 🤗</button><p id="hug" class="final"></p><p class="small">Musik akan terus diputar otomatis selama halaman ini terbuka 🎵</p></section>
+</div>
+<script>
+const music=document.getElementById('music');
+function startMusic(){music.play().catch(()=>{});}
+window.addEventListener('load',()=>{music.play().catch(()=>{});});
+document.addEventListener('click',()=>startMusic(),{once:false});
+function next(n){document.querySelectorAll('.card').forEach((x,i)=>{if(i>0)x.classList.add('hidden')});let el=document.getElementById('p'+n);if(el)el.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});startMusic()}
+let score=0,playing=false;
+function startGame(){score=0;playing=true;document.getElementById('score').textContent=0;document.getElementById('result').textContent='';document.getElementById('continue').classList.add('hidden');setTimeout(()=>{playing=false;document.getElementById('result').textContent=score>=5?'MENANG! 😭💗':'KALAH 😂 hukumannya: kirim pap senyum! 📸';document.getElementById('continue').classList.remove('hidden')},10000)}
+function hit(){if(playing){score++;document.getElementById('score').textContent=score}}
+function hug(){document.getElementById('hug').textContent='PELUK DITERIMA 🥹🫂💗'}
+for(let i=0;i<25;i++){let s=document.createElement('span');s.textContent=['💗','💕','💖','✨'][i%4];s.style.left=Math.random()*100+'%';s.style.animationDuration=(5+Math.random()*7)+'s';s.style.animationDelay=Math.random()*5+'s';s.style.fontSize=(14+Math.random()*20)+'px';document.getElementById('float').appendChild(s)}
+</script>
+</body></html>
